@@ -33,11 +33,6 @@ public class DownloadTaskTest extends TestCase{
   
   @Override
   protected void setUp() throws MalformedURLException {
-//    serverUrl = "";
-//    appId = "";
-//    absolutePathOfTestFiles = "testfiles" + File.separator;
-//    userName = "";
-//    password = "";
     
     serverUrl = System.getProperty("test.aggUrl");
     appId = System.getProperty("test.appId");
@@ -45,6 +40,12 @@ public class DownloadTaskTest extends TestCase{
     userName = System.getProperty("test.userName");
     password = System.getProperty("test.password");
     version = "2";
+    
+		serverUrl = "http://127.0.0.1";
+		appId = "default";
+		absolutePathOfTestFiles = "testfiles" + File.separator;
+		userName = "webadmin";
+		password = "admin";
     
     cloudEndpointInfo = new CloudEndpointInfo(serverUrl, appId, userName, password);
   }

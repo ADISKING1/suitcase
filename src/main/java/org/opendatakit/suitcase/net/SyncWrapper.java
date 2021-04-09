@@ -34,6 +34,12 @@ public class SyncWrapper {
   private SyncClient sc;
   private boolean hasInit;
 
+  public void unInit() {
+  	this.cloudEndpointInfo = null;
+  	this.sc = null;
+  	this.hasInit = false;
+  }
+  
   private SyncWrapper() {
     this.hasInit = false;
   }

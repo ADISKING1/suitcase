@@ -32,20 +32,20 @@ public class UploadTaskTest extends TestCase{
   @Override
   protected void setUp() throws Exception {
     super.setUp();
-    serverUrl = System.getProperty("test.aggUrl");
-    appId = System.getProperty("test.appId");
-    absolutePathOfTestFiles = System.getProperty("test.absolutePathOfTestFiles");
-    batchSize = Integer.valueOf(System.getProperty("test.batchSize"));
-    userName = System.getProperty("test.userName");
-    password = System.getProperty("test.password");
+    //serverUrl = System.getProperty("test.aggUrl");
+    //appId = System.getProperty("test.appId");
+    //absolutePathOfTestFiles = System.getProperty("test.absolutePathOfTestFiles");
+    //batchSize = Integer.valueOf(System.getProperty("test.batchSize"));
+    //userName = System.getProperty("test.userName");
+    //password = System.getProperty("test.password");
     
-//    serverUrl = "";
-//    appId = "";
-//    absolutePathOfTestFiles = "testfiles" + File.separator;
-//    batchSize = 1000;
-//    userName = "";
-//    password = "";
-	
+		serverUrl = "http://127.0.0.1";
+		appId = "default";
+		absolutePathOfTestFiles = "testfiles" + File.separator;
+		batchSize = 1000;
+		userName = "webadmin";
+		password = "admin";
+		
     URL url = new URL(serverUrl);
     host = url.getHost();
     version = "2";

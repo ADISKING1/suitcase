@@ -91,7 +91,8 @@ public class LoginPanel extends JPanel implements PropertyChangeListener {
     JPanel inputPanel = new InputPanel(
         new String[] {"Cloud Endpoint Address", "App ID", "Username", "Password"},
         new JTextField[] {sCloudEndpointAddressText, sAppIdText, sUserNameText, sPasswordText},
-        new String[] {"https://cloud-endpoint-server-url.appspot.com", "default", "", ""}
+        //new String[] {"https://cloud-endpoint-server-url.appspot.com", "default", "", ""}
+        new String[] {"https://survey-demo.odk-x.org/", "default", "demo_user1", "password"}
     );
     gbc.weighty = 85;
     gbc.insets = new Insets(80, 50, 0, 50);
@@ -149,6 +150,7 @@ public class LoginPanel extends JPanel implements PropertyChangeListener {
 
       // if login is successful, let parent switch to the next card
       if (SyncWrapper.getInstance().isInitialized()) {
+      	getParent().add(new IOPanel((MainPanel) getParent()));
         ((CardLayout) getParent().getLayout()).next(getParent());
       }
     }

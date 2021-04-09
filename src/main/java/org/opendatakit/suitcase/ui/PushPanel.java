@@ -1,7 +1,9 @@
 package org.opendatakit.suitcase.ui;
 
+import org.opendatakit.suitcase.Suitcase;
 import org.opendatakit.suitcase.net.ResetTask;
 import org.opendatakit.suitcase.net.SuitcaseSwingWorker;
+import org.opendatakit.suitcase.net.SyncWrapper;
 import org.opendatakit.suitcase.net.UploadTask;
 import org.opendatakit.suitcase.utils.FieldsValidatorUtils;
 import org.opendatakit.suitcase.utils.FileUtils;
@@ -19,10 +21,13 @@ public class PushPanel extends JPanel implements PropertyChangeListener {
   private static final String RESET_LABEL = "Reset";
   private static final String RESETTING_LABEL = "Resetting";
   private static final String DATA_PATH_LABEL = "Upload";
+  private static final String LOGOUT_LABEL = "Resetting";
+  private static final String LOGGING_OUT_LABEL = "Resetting";
 
   private JTextField sVersionPushText;
   private JButton sPushButton;
   private JButton sResetButton;
+  private JButton sLogout;
   private PathChooserPanel dataPathChooser;
 
   private IOPanel parent;
@@ -35,6 +40,7 @@ public class PushPanel extends JPanel implements PropertyChangeListener {
     this.sVersionPushText = new JTextField(1);
     this.sPushButton = new JButton();
     this.sResetButton = new JButton();
+    this.sLogout = new JButton();
     this.dataPathChooser = new PathChooserPanel(
         DATA_PATH_LABEL, FileUtils.getDefaultUploadPath().toString()
     );
@@ -124,7 +130,18 @@ public class PushPanel extends JPanel implements PropertyChangeListener {
         }
       }
     });
+    
+    sLogout.setText(LOGOUT_LABEL);
+    sLogout.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+      	sLogout.setText(LOGGING_OUT_LABEL);
+        SyncWrapper.getInstance().unInit();
+      	Suitcase.launchGUI();
+      }
+    });
 
+    pushButtonPanel.add(sLogout, gbc);
     pushButtonPanel.add(sResetButton, gbc);
     pushButtonPanel.add(sPushButton, gbc);
   }
@@ -132,6 +149,7 @@ public class PushPanel extends JPanel implements PropertyChangeListener {
   private void setButtonState(boolean state) {
     sPushButton.setEnabled(state);
     sResetButton.setEnabled(state);
+    sLogout.setEnabled(state);
   }
 
   @Override
